@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registro de Cliente - Ferremas</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}" />
+</head>
+<body>
+    <section class="form-register">
+        <h4>Registro en Ferremas</h4>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="errorlist">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <!-- Campo RUT -->
+            {{ form.rut.errors }}
+            <input class="controls" type="text" name="rut" placeholder="Ingrese su RUT" value="{{ form.rut.value|default_if_none:'' }}" required />
+
+            <!-- Campo Nombre -->
+            {{ form.nombre.errors }}
+            <input class="controls" type="text" name="nombre" placeholder="Ingrese su Nombre" value="{{ form.nombre.value|default_if_none:'' }}" required />
+
+            <!-- Campo Email -->
+            {{ form.email.errors }}
+            <input class="controls" type="email" name="email" placeholder="Ingrese su Correo" value="{{ form.email.value|default_if_none:'' }}" required />
+
+            <!-- Campo Dirección -->
+            {{ form.direccion.errors }}
+            <input class="controls" type="text" name="direccion" placeholder="Ingrese su Dirección" value="{{ form.direccion.value|default_if_none:'' }}" required />
+
+            <!-- Campo Teléfono -->
+            {{ form.telefono.errors }}
+            <input class="controls" type="text" name="telefono" placeholder="Ingrese su Teléfono (opcional)" value="{{ form.telefono.value|default_if_none:'' }}" />
+
+            <!-- Campo Contraseña -->
+            {{ form.contraseña.errors }}
+            <input class="controls" type="password" name="contraseña" placeholder="Ingrese su Contraseña" required />
+
+            <p>Estoy de acuerdo con <a href="#">Términos y Condiciones</a></p>
+            <button class="botons" type="submit">Registrar</button>
+            <p><a href="/index">¿Ya tengo Cuenta?</a></p>
+        </form>
+    </section>
+</body>
+</html>

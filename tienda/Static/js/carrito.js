@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar carrito
     actualizarCarrito();
     
+    // Actualizar precios CLP después de inicializar el carrito
+    actualizarPreciosCLP();
+    
     // Funciones
     function abrirCarrito() {
         carritoModal.style.display = 'block';
